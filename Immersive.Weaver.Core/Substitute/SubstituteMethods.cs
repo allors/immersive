@@ -1,55 +1,55 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright file="SubstituteMethods.cs" company="allors bvba">
 //   Copyright 2008-2014 Allors bvba.
-//   
+//
 //   This program is free software: you can redistribute it and/or modify
 //   it under the terms of the GNU Lesser General Public License as published by
 //   the Free Software Foundation, either version 3 of the License, or
 //   (at your option) any later version.
-//   
+//
 //   This program is distributed in the hope that it will be useful,
 //   but WITHOUT ANY WARRANTY; without even the implied warranty of
 //   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //   GNU Lesser General Public License for more details.
-//   
+//
 //   You should have received a copy of the GNU Lesser General Public License
 //   along with this program.  If not, see http://www.gnu.org/licenses.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Immersive.Fody
+namespace Immersive.Weaver
 {
     using System.Collections;
     using System.Text;
 
-    using Mono.Cecil;
+    using dnlib.DotNet;
 
     public class SubstituteMethods : CollectionBase
     {
-        internal SubstituteMethods(ModuleWeaver moduleWeaver, ModuleDefinition moduleDefinition)
+        internal SubstituteMethods(ModuleWeaver moduleWeaver, ModuleDef moduleDef)
         {
             this.ModuleWeaver = moduleWeaver;
-            this.ModuleDefinition = moduleDefinition;
+            this.ModuleDefinition = moduleDef;
 
-            foreach (var typeDefinitoin in Helper.GetAllTypes(this.ModuleDefinition))
+            foreach (var typeDef in Helper.GetAllTypes(this.ModuleDefinition))
             {
-                foreach (var methodDefinition in typeDefinitoin.Methods)
+                foreach (var methodDef in typeDef.Methods)
                 {
-                    foreach (var customAttribute in methodDefinition.CustomAttributes)
+                    foreach (var customAttribute in methodDef.CustomAttributes)
                     {
-                        if (customAttribute.Constructor.DeclaringType.FullName.Equals(Attributes.SubstituteMethodAttribute))
+                        if (customAttribute.AttributeType.FullName.Equals(Attributes.SubstituteMethodAttribute))
                         {
-                            var substitute = new SubstituteMethod(moduleWeaver, methodDefinition, customAttribute);
+                            var substitute = new SubstituteMethod(moduleWeaver, methodDef, customAttribute);
                             this.List.Add(substitute);
                         }
                     }
                 }
-            }            
+            }
         }
 
         public ModuleWeaver ModuleWeaver { get; }
 
-        public ModuleDefinition ModuleDefinition { get; }
+        public ModuleDef ModuleDefinition { get; }
 
         public override string ToString()
         {
@@ -68,7 +68,7 @@ namespace Immersive.Fody
             get { return (SubstituteMethod)List[index]; }
         }
 
-        internal SubstituteMethod Lookup(MethodReference operand)
+        internal SubstituteMethod Lookup(IMethod operand)
         {
             foreach (SubstituteMethod substitute in this)
             {

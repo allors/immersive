@@ -1,17 +1,17 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright file="SubstitutesTests.cs" company="allors bvba">
 //   Copyright 2008-2014 Allors bvba.
-//   
+//
 //   This program is free software: you can redistribute it and/or modify
 //   it under the terms of the GNU Lesser General Public License as published by
 //   the Free Software Foundation, either version 3 of the License, or
 //   (at your option) any later version.
-//   
+//
 //   This program is distributed in the hope that it will be useful,
 //   but WITHOUT ANY WARRANTY; without even the implied warranty of
 //   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //   GNU Lesser General Public License for more details.
-//   
+//
 //   You should have received a copy of the GNU Lesser General Public License
 //   along with this program.  If not, see http://www.gnu.org/licenses.
 // </copyright>
@@ -20,9 +20,9 @@ namespace Immersive.Tests
 {
     using System.IO;
 
-    using Immersive.Fody;
+    using Immersive.Weaver;
 
-    using Mono.Cecil;
+    using dnlib.DotNet;
 
     using Xunit;
 
@@ -33,16 +33,9 @@ namespace Immersive.Tests
         public SubstitutesTests()
         {
             var assemblyPath = new DirectoryInfo("AssemblyToImmerse.dll").FullName;
-            using (var assemblyResolver = new DefaultAssemblyResolver())
-            {
-                var directoryName = Path.GetDirectoryName(assemblyPath);
-                assemblyResolver.AddSearchDirectory(directoryName);
+            var moduleDef = ModuleDefMD.Load(File.ReadAllBytes(assemblyPath));
 
-                using (var moduleDefinition = ModuleDefinition.ReadModule(assemblyPath))
-                {
-                    this.substitutes = new Substitutes(Fixture.ModuleWeaver, moduleDefinition);
-                }
-            }
+            this.substitutes = new Substitutes(Fixture.ModuleWeaver, moduleDef);
         }
 
         [Fact]

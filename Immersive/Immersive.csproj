@@ -1,19 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net48</TargetFrameworks>
+    <TargetFrameworks>net48;net10.0</TargetFrameworks>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
     <Authors>allors</Authors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageId>Immersive.Fody</PackageId>
     <PackageProjectUrl>http://github.com/Allors/Immersive</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/Allors/Immersive/master/package_icon.png</PackageIconUrl>
     <Description>Immerse a library inside another library.</Description>
-    <PackageReleaseNotes>Upgrading to Fody 3.0</PackageReleaseNotes>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Fody" Version="6.9.3" PrivateAssets="none" />
-    <PackageReference Include="FodyPackaging" Version="6.9.3" PrivateAssets="all" />
-  </ItemGroup>
 </Project>

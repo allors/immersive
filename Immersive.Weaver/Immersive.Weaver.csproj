@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net48;net10.0</TargetFrameworks>
+    <DebugType>portable</DebugType>
+    <OutputPath>lib\$(TargetFramework)\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="18.0.2" ExternallyResolved="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Immersive.Weaver.Core\Immersive.Weaver.Core.csproj" />
+  </ItemGroup>
+</Project>

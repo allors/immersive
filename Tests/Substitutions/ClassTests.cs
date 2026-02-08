@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 
 using Xunit;
@@ -10,7 +10,7 @@ namespace Immersive.Tests
         [Fact]
         public void Default()
         {
-            var type = Fixture.TestResult.Assembly.GetType("AssemblyToProcess.TestForm");
+            var type = Fixture.Assembly.GetType("AssemblyToProcess.TestForm");
             var instance = (dynamic)Activator.CreateInstance(type);
 
             var constructorCalledFieldInfo = type.GetField("constructorCalled", BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetField);

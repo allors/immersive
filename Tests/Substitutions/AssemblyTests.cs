@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using Xunit;
 
 namespace Immersive.Tests
@@ -8,9 +8,9 @@ namespace Immersive.Tests
         [Fact]
         public void PeVerify()
         {
-#if (DEBUG && NET46)
+#if (DEBUG && NETFRAMEWORK)
             var beforeAssemblyPath = new DirectoryInfo(".").FullName;
-            var afterAssemblyPath = new FileInfo(Fixture.TestResult.AssemblyPath).Directory.FullName;
+            var afterAssemblyPath = new FileInfo(Fixture.AssemblyPath).Directory.FullName;
 
             Verifier.Verify(beforeAssemblyPath, afterAssemblyPath);
 #endif

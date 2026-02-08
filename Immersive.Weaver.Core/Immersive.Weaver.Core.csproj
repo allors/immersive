@@ -2,8 +2,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net48;net10.0</TargetFrameworks>
+    <DebugType>portable</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssemblyToImmerse\AssemblyToImmerse.csproj" />
+    <PackageReference Include="dnlib" Version="4.5.0" />
   </ItemGroup>
 </Project>

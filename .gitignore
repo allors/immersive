@@ -304,3 +304,9 @@ __pycache__/
 
 # OpenCover UI analysis results
 OpenCover/
+
+# Claude Code
+.claude/
+
+# Weaver build output
+Immersive.Weaver/lib/

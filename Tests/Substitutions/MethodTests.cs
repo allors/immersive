@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Xunit;
 
 namespace Immersive.Tests
@@ -8,7 +8,7 @@ namespace Immersive.Tests
         [Fact]
         public void SubstituteWithType()
         {
-            var type = Fixture.TestResult.Assembly.GetType("AssemblyToProcess.TestForm");
+            var type = Fixture.Assembly.GetType("AssemblyToProcess.TestForm");
 
             Assert.Equal("Referenced: Show(False)", type.GetMethod("ShowMessageBox", new[] { typeof(bool) }).Invoke(null, new object[] { false }));
 
@@ -24,7 +24,7 @@ namespace Immersive.Tests
         [Fact]
         public void SubstituteWithTypeAndMethodName()
         {
-            var type = Fixture.TestResult.Assembly.GetType("AssemblyToProcess.TestForm");
+            var type = Fixture.Assembly.GetType("AssemblyToProcess.TestForm");
             var instance = (dynamic)Activator.CreateInstance(type);
 
             Assert.Equal("Substitute: Referenced: ShowDialog()", instance.CallShowDialog());
