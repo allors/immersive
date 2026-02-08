@@ -28,7 +28,7 @@ namespace Immersive.Fody
             this.ModuleWeaver = moduleWeaver;
             var moduleDefinition = moduleWeaver.ModuleDefinition;
 
-            this.ModuleWeaver.LogInfo($"Substitutables: ${moduleDefinition.Assembly.FullName}");
+            this.ModuleWeaver.WriteInfo($"Substitutables: ${moduleDefinition.Assembly.FullName}");
             
             foreach (var typeDefinition in Helper.GetAllTypes(moduleDefinition))
             {

@@ -53,7 +53,7 @@ namespace Immersive.Fody
                 }
             }
 
-            this.ModuleWeaver.LogInfo($"SubstituteClass: ${this.SubstitutableFullName}");
+            this.ModuleWeaver.WriteInfo($"SubstituteClass: ${this.SubstitutableFullName}");
         }
 
         public ModuleWeaver ModuleWeaver { get; }

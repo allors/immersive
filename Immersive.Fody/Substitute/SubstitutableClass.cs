@@ -31,7 +31,7 @@ namespace Immersive.Fody
             this.ModuleWeaver = moduleWeaver;
             this.TypeDefinition = typeDefinition;
 
-            this.ModuleWeaver.LogInfo($"Substitutable: ${this.TypeDefinition.FullName}");
+            this.ModuleWeaver.WriteInfo($"Substitutable: ${this.TypeDefinition.FullName}");
         }
 
         public ModuleWeaver ModuleWeaver { get; }

@@ -7,9 +7,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <PackageReference Include="FodyHelpers" Version="3.0.3" />
-    <PackageReference Include="xunit" Version="2.3.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+    <PackageReference Include="FodyHelpers" Version="6.9.3" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <ProjectReference Include="..\Immersive.Fody\Immersive.Fody.csproj" />
     <ProjectReference Include="..\Immersive\Immersive.csproj" />
     <ProjectReference Include="..\AssemblyReferenced\AssemblyReferenced.csproj" />

@@ -19,7 +19,7 @@ public class ModuleWeaver : BaseModuleWeaver
         var immersiveType = this.ModuleDefinition.Types.FirstOrDefault(v => v.Name.Equals("ImmersiveMarker") && v.IsClass);
         if (immersiveType == null)
         {
-            this.LogInfo("No immersive assembly found");
+            this.WriteInfo("No immersive assembly found");
         }
         else
         {
@@ -29,7 +29,7 @@ public class ModuleWeaver : BaseModuleWeaver
 
             substitutableAssembly.Substitute(substitutes);
 
-            this.LogInfo(moduleDefinition?.Name + " immersed in " + this.ModuleDefinition.Name + ".");
+            this.WriteInfo(moduleDefinition?.Name + " immersed in " + this.ModuleDefinition.Name + ".");
         }
     }
 }

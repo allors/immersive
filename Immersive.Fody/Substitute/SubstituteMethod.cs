@@ -37,7 +37,7 @@ namespace Immersive.Fody
                 this.MethodName = (string)customAttribute.ConstructorArguments[1].Value;
             }
 
-            this.ModuleWeaver.LogInfo($"SubstituteMethod: ${this.FullTypeName}.${this.MethodName}");
+            this.ModuleWeaver.WriteInfo($"SubstituteMethod: ${this.FullTypeName}.${this.MethodName}");
         }
 
         public ModuleWeaver ModuleWeaver { get; }

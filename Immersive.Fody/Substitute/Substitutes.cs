@@ -27,7 +27,7 @@ namespace Immersive.Fody
         {
             this.ModuleWeaver = moduleWeaver;
 
-            this.ModuleWeaver.LogInfo($"Substitutes: ${moduleDefinition.Assembly.FullName}");
+            this.ModuleWeaver.WriteInfo($"Substitutes: ${moduleDefinition.Assembly.FullName}");
             
             this.SubstituteClasses = new SubstituteClasses(moduleWeaver, moduleDefinition);
             this.SubstituteMethods = new SubstituteMethods(moduleWeaver, moduleDefinition);
