@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+  </Folder>
+  <Project Path="Tests/Tests.csproj" />
+  <Project Path="AssemblyReferenced/AssemblyReferenced.csproj" />
+  <Project Path="AssemblyToImmerse/AssemblyToImmerse.csproj" />
+  <Project Path="AssemblyToProcess/AssemblyToProcess.csproj" />
+  <Project Path="Immersive/Immersive.csproj" />
+  <Project Path="Immersive.Fody/Immersive.Fody.csproj" />
+</Solution>
