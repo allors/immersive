@@ -130,18 +130,29 @@ public class TestForm : AssemblyReferenced.Form
 
 After weaving, `TestForm` inherits from the substitute `Form` and `CallShowDialog()` invokes the substituted method body.
 
+## Building
+
+The project uses [Nuke](https://nuke.build) as its build system.
+
+```
+./build.cmd Compile        # restore + build
+./build.cmd Test           # run tests
+./build.cmd Pack           # create NuGet packages in output/
+./build.cmd Clean Compile  # clean then build
+```
+
 ## Solution structure
 
 | Project | Description |
 |---|---|
-| `Immersive` | Attribute definitions (`SubstituteClassAttribute`, `SubstituteMethodAttribute`) |
-| `Immersive.Weaver.Core` | Weaving engine (dnlib-based IL rewriting) |
-| `Immersive.Weaver` | MSBuild task that invokes the weaver after compilation |
-| `Immersive.Weaver.Tool` | CLI tool for standalone weaving |
-| `AssemblyReferenced` | Test fixture — the referenced library |
-| `AssemblyToImmerse` | Test fixture — substitute implementations |
-| `AssemblyToProcess` | Test fixture — target assembly to weave |
-| `Tests` | Integration tests validating the weaving results |
+| `src/Immersive` | Attribute definitions (`SubstituteClassAttribute`, `SubstituteMethodAttribute`) |
+| `src/Immersive.Weaver.Core` | Weaving engine (dnlib-based IL rewriting) |
+| `src/Immersive.Weaver` | MSBuild task that invokes the weaver after compilation |
+| `src/Immersive.Weaver.Tool` | CLI tool for standalone weaving |
+| `test/AssemblyReferenced` | Test fixture — the referenced library |
+| `test/AssemblyToImmerse` | Test fixture — substitute implementations |
+| `test/AssemblyToProcess` | Test fixture — target assembly to weave |
+| `test/Tests` | Integration tests validating the weaving results |
 
 ## License
 

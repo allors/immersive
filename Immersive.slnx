@@ -1,14 +1,19 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path="Directory.Build.props" />
+    <File Path="global.json" />
     <File Path="README.md" />
   </Folder>
-  <Project Path="Tests/Tests.csproj" />
-  <Project Path="AssemblyReferenced/AssemblyReferenced.csproj" />
-  <Project Path="AssemblyToImmerse/AssemblyToImmerse.csproj" />
-  <Project Path="AssemblyToProcess/AssemblyToProcess.csproj" />
-  <Project Path="Immersive/Immersive.csproj" />
-  <Project Path="Immersive.Weaver/Immersive.Weaver.csproj" />
-  <Project Path="Immersive.Weaver.Core/Immersive.Weaver.Core.csproj" />
-  <Project Path="Immersive.Weaver.Tool/Immersive.Weaver.Tool.csproj" />
+  <Folder Name="/src/">
+    <Project Path="src/Immersive/Immersive.csproj" />
+    <Project Path="src/Immersive.Weaver/Immersive.Weaver.csproj" />
+    <Project Path="src/Immersive.Weaver.Core/Immersive.Weaver.Core.csproj" />
+    <Project Path="src/Immersive.Weaver.Tool/Immersive.Weaver.Tool.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Tests/Tests.csproj" />
+    <Project Path="test/AssemblyReferenced/AssemblyReferenced.csproj" />
+    <Project Path="test/AssemblyToImmerse/AssemblyToImmerse.csproj" />
+    <Project Path="test/AssemblyToProcess/AssemblyToProcess.csproj" />
+  </Folder>
 </Solution>

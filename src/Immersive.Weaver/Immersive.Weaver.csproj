@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net48;net10.0</TargetFrameworks>
+    <DebugType>portable</DebugType>
+    <OutputPath>lib\$(TargetFramework)\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- Package all task DLLs manually; suppress default lib/ output -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="18.0.2" ExternallyResolved="true" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Immersive.Weaver.Core\Immersive.Weaver.Core.csproj" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- Include .targets and task DLLs in the nupkg -->
+  <ItemGroup>
+    <None Include="build\Immersive.Weaver.targets" Pack="true" PackagePath="build\" />
+    <None Include="lib\net48\Immersive.Weaver.dll" Pack="true" PackagePath="lib\net48\" />
+    <None Include="lib\net48\Immersive.Weaver.Core.dll" Pack="true" PackagePath="lib\net48\" />
+    <None Include="lib\net48\dnlib.dll" Pack="true" PackagePath="lib\net48\" />
+    <None Include="lib\net10.0\Immersive.Weaver.dll" Pack="true" PackagePath="lib\net10.0\" />
+    <None Include="lib\net10.0\Immersive.Weaver.Core.dll" Pack="true" PackagePath="lib\net10.0\" />
+    <None Include="lib\net10.0\dnlib.dll" Pack="true" PackagePath="lib\net10.0\" />
+  </ItemGroup>
+</Project>

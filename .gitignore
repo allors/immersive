@@ -309,4 +309,8 @@ OpenCover/
 .claude/
 
 # Weaver build output
-Immersive.Weaver/lib/
+src/Immersive.Weaver/lib/
+
+# Nuke
+output/
+.nuke/temp/

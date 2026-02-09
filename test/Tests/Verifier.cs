@@ -1,4 +1,5 @@
-﻿using System;
+#if NETFRAMEWORK
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -31,7 +32,6 @@ namespace Immersive.Tests
         {
             var before = Validate(beforeAssemblyPath);
             var after = Validate(afterAssemblyPath);
-            var message = $"Failed processing {Path.GetFileName(afterAssemblyPath)}\r\n{after}";
             Assert.Equal(TrimLineNumbers(before), TrimLineNumbers(after));
         }
 
@@ -55,3 +55,4 @@ namespace Immersive.Tests
         }
     }
 }
+#endif

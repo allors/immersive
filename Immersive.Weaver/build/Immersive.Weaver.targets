@@ -1,6 +1,0 @@
-<Project>
-  <UsingTask TaskName="Immersive.Weaver.ImmersiveTask" AssemblyFile="$(MSBuildThisFileDirectory)..\lib\$(TargetFramework)\Immersive.Weaver.dll" />
-  <Target Name="Immersive" AfterTargets="Compile">
-    <ImmersiveTask AssemblyPath="$(TargetPath)" SearchDirectories="@(ReferencePath)" />
-  </Target>
-</Project>
