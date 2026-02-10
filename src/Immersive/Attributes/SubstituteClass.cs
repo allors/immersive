@@ -21,18 +21,31 @@ namespace Immersive
 {
     using System;
 
+    /// <summary>
+    /// Marks a class as a substitute for another class. The weaver replaces the target class's members with those from the annotated class.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     public class SubstituteClassAttribute : Attribute
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SubstituteClassAttribute"/> class. The substitutable type is inferred by name.
+        /// </summary>
         public SubstituteClassAttribute()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SubstituteClassAttribute"/> class with an explicit target type.
+        /// </summary>
+        /// <param name="substitutableType">The type to substitute.</param>
         public SubstituteClassAttribute(Type substitutableType)
         {
             this.SubstitutableType = substitutableType;
         }
 
+        /// <summary>
+        /// Gets the type that this class substitutes.
+        /// </summary>
         public Type SubstitutableType { get; }
     }
 }
