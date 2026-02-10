@@ -18,7 +18,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace AssemblyToImmerse
 {
-    using Immersive;
+    using Allors.Immersive;
 
     [SubstituteClass]
     public class Button : AssemblyReferenced.Button

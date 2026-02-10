@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net48;net10.0</TargetFrameworks>
     <DebugType>portable</DebugType>
+    <Description>MSBuild task that weaves substitute types and methods into target assemblies at compile time.</Description>
     <OutputPath>lib\$(TargetFramework)\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
@@ -17,17 +18,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Immersive.Weaver.Core\Immersive.Weaver.Core.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\Allors.Immersive.Weaver.Core\Allors.Immersive.Weaver.Core.csproj" PrivateAssets="all" />
   </ItemGroup>
 
   <!-- Include .targets and task DLLs in the nupkg -->
   <ItemGroup>
-    <None Include="build\Immersive.Weaver.targets" Pack="true" PackagePath="build\" />
-    <None Include="lib\net48\Immersive.Weaver.dll" Pack="true" PackagePath="lib\net48\" />
-    <None Include="lib\net48\Immersive.Weaver.Core.dll" Pack="true" PackagePath="lib\net48\" />
+    <None Include="build\Allors.Immersive.Weaver.targets" Pack="true" PackagePath="build\" />
+    <None Include="lib\net48\Allors.Immersive.Weaver.dll" Pack="true" PackagePath="lib\net48\" />
+    <None Include="lib\net48\Allors.Immersive.Weaver.Core.dll" Pack="true" PackagePath="lib\net48\" />
     <None Include="lib\net48\dnlib.dll" Pack="true" PackagePath="lib\net48\" />
-    <None Include="lib\net10.0\Immersive.Weaver.dll" Pack="true" PackagePath="lib\net10.0\" />
-    <None Include="lib\net10.0\Immersive.Weaver.Core.dll" Pack="true" PackagePath="lib\net10.0\" />
+    <None Include="lib\net10.0\Allors.Immersive.Weaver.dll" Pack="true" PackagePath="lib\net10.0\" />
+    <None Include="lib\net10.0\Allors.Immersive.Weaver.Core.dll" Pack="true" PackagePath="lib\net10.0\" />
     <None Include="lib\net10.0\dnlib.dll" Pack="true" PackagePath="lib\net10.0\" />
   </ItemGroup>
 </Project>

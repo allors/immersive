@@ -17,7 +17,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Immersive
+namespace Allors.Immersive
 {
     using System;
 

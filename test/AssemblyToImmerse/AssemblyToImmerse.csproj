@@ -5,6 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\AssemblyReferenced\AssemblyReferenced.csproj" />
-    <ProjectReference Include="..\..\src\Immersive\Immersive.csproj" />
+    <ProjectReference Include="..\..\src\Allors.Immersive\Allors.Immersive.csproj" />
   </ItemGroup>
 </Project>

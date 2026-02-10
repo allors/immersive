@@ -15,8 +15,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <ProjectReference Include="..\..\src\Immersive.Weaver.Core\Immersive.Weaver.Core.csproj" />
-    <ProjectReference Include="..\..\src\Immersive\Immersive.csproj" />
+    <ProjectReference Include="..\..\src\Allors.Immersive.Weaver.Core\Allors.Immersive.Weaver.Core.csproj" />
+    <ProjectReference Include="..\..\src\Allors.Immersive\Allors.Immersive.csproj" />
     <ProjectReference Include="..\AssemblyReferenced\AssemblyReferenced.csproj" />
     <ProjectReference Include="..\AssemblyToImmerse\AssemblyToImmerse.csproj" />
     <ProjectReference Include="..\AssemblyToProcess\AssemblyToProcess.csproj" />

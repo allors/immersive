@@ -19,7 +19,7 @@
 
 namespace AssemblyToImmerse
 {
-    using global::Immersive;
+    using global::Allors.Immersive;
 
     public class MessageBox
     {

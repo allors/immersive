@@ -5,9 +5,9 @@ using System.Reflection;
 #if !NETFRAMEWORK
 using System.Runtime.Loader;
 #endif
-using Immersive.Weaver;
+using Allors.Immersive.Weaver;
 
-namespace Immersive.Tests
+namespace Allors.Immersive.Tests
 {
     public static class Fixture
     {
@@ -26,7 +26,7 @@ namespace Immersive.Tests
             BeforeAssembly = System.Reflection.Assembly.LoadFrom(sourcePath);
 
             // Copy to temp directory for weaving
-            var tempDir = Path.Combine(Path.GetTempPath(), "Immersive_" + Guid.NewGuid().ToString("N"));
+            var tempDir = Path.Combine(Path.GetTempPath(), "Allors.Immersive_" + Guid.NewGuid().ToString("N"));
             Directory.CreateDirectory(tempDir);
 
             var sourceDir = Path.GetDirectoryName(sourcePath);

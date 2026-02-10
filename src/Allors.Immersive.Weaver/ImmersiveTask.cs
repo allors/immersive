@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
-namespace Immersive.Weaver
+namespace Allors.Immersive.Weaver
 {
     public class ImmersiveTask : Task
     {

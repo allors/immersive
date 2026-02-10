@@ -5,8 +5,9 @@
     <TargetFramework>net10.0</TargetFramework>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>immersive</ToolCommandName>
+    <Description>CLI tool for weaving substitute types and methods into target assemblies.</Description>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Immersive.Weaver.Core\Immersive.Weaver.Core.csproj" />
+    <ProjectReference Include="..\Allors.Immersive.Weaver.Core\Allors.Immersive.Weaver.Core.csproj" />
   </ItemGroup>
 </Project>

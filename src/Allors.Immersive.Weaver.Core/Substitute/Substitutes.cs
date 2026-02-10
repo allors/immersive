@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Attributes.cs" company="allors bvba">
+// <copyright file="Substitutes.cs" company="allors bvba">
 //   Copyright 2008-2014 Allors bvba.
 //
 //   This program is free software: you can redistribute it and/or modify
@@ -17,12 +17,26 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Immersive.Weaver
+namespace Allors.Immersive.Weaver
 {
-    public static class Attributes
-    {
-        public const string SubstituteClassAttribute = "Immersive.SubstituteClassAttribute";
+    using dnlib.DotNet;
 
-        public const string SubstituteMethodAttribute = "Immersive.SubstituteMethodAttribute";
+    public class Substitutes
+    {
+        public Substitutes(ModuleWeaver moduleWeaver, ModuleDef moduleDef)
+        {
+            this.ModuleWeaver = moduleWeaver;
+
+            this.ModuleWeaver.WriteInfo($"Substitutes: {moduleDef.Assembly.FullName}");
+
+            this.SubstituteClasses = new SubstituteClasses(moduleWeaver, moduleDef);
+            this.SubstituteMethods = new SubstituteMethods(moduleWeaver, moduleDef);
+        }
+
+        public ModuleWeaver ModuleWeaver { get; }
+
+        public SubstituteClasses SubstituteClasses { get; }
+
+        public SubstituteMethods SubstituteMethods { get; }
     }
 }

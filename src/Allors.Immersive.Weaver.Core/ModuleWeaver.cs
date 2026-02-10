@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using dnlib.DotNet;
 
-namespace Immersive.Weaver
+namespace Allors.Immersive.Weaver
 {
     public class ModuleWeaver
     {

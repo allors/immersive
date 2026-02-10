@@ -5,10 +5,10 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/src/">
-    <Project Path="src/Immersive/Immersive.csproj" />
-    <Project Path="src/Immersive.Weaver/Immersive.Weaver.csproj" />
-    <Project Path="src/Immersive.Weaver.Core/Immersive.Weaver.Core.csproj" />
-    <Project Path="src/Immersive.Weaver.Tool/Immersive.Weaver.Tool.csproj" />
+    <Project Path="src/Allors.Immersive/Allors.Immersive.csproj" />
+    <Project Path="src/Allors.Immersive.Weaver/Allors.Immersive.Weaver.csproj" />
+    <Project Path="src/Allors.Immersive.Weaver.Core/Allors.Immersive.Weaver.Core.csproj" />
+    <Project Path="src/Allors.Immersive.Weaver.Tool/Allors.Immersive.Weaver.Tool.csproj" />
   </Folder>
   <Folder Name="/test/">
     <Project Path="test/Tests/Tests.csproj" />

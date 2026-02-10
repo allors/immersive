@@ -17,7 +17,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Immersive.Weaver
+namespace Allors.Immersive.Weaver
 {
     using dnlib.DotNet;
 

@@ -309,7 +309,7 @@ OpenCover/
 .claude/
 
 # Weaver build output
-src/Immersive.Weaver/lib/
+src/Allors.Immersive.Weaver/lib/
 
 # Nuke
 output/

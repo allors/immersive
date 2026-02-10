@@ -3,7 +3,7 @@
     <_ImmersiveTaskTfm Condition="'$(MSBuildRuntimeType)' == 'Full'">net48</_ImmersiveTaskTfm>
     <_ImmersiveTaskTfm Condition="'$(MSBuildRuntimeType)' != 'Full'">net10.0</_ImmersiveTaskTfm>
   </PropertyGroup>
-  <UsingTask TaskName="Immersive.Weaver.ImmersiveTask" AssemblyFile="$(MSBuildThisFileDirectory)..\lib\$(_ImmersiveTaskTfm)\Immersive.Weaver.dll" />
+  <UsingTask TaskName="Allors.Immersive.Weaver.ImmersiveTask" AssemblyFile="$(MSBuildThisFileDirectory)..\lib\$(_ImmersiveTaskTfm)\Allors.Immersive.Weaver.dll" />
   <Target Name="Immersive" AfterTargets="Compile">
     <ImmersiveTask AssemblyPath="$(TargetPath)" SearchDirectories="@(ReferencePath)" />
   </Target>

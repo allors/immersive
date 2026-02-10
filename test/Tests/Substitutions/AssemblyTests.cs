@@ -1,7 +1,7 @@
 using System.IO;
 using Xunit;
 
-namespace Immersive.Tests
+namespace Allors.Immersive.Tests
 {
     public class AssemblyTests
     {

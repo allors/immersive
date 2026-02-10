@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Immersive.Weaver.Tool
+namespace Allors.Immersive.Weaver.Tool
 {
     public static class Program
     {

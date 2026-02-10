@@ -61,9 +61,9 @@ class Build : NukeBuild
         {
             var packableProjects = new[]
             {
-                SourceDirectory / "Immersive" / "Immersive.csproj",
-                SourceDirectory / "Immersive.Weaver" / "Immersive.Weaver.csproj",
-                SourceDirectory / "Immersive.Weaver.Tool" / "Immersive.Weaver.Tool.csproj",
+                SourceDirectory / "Allors.Immersive" / "Allors.Immersive.csproj",
+                SourceDirectory / "Allors.Immersive.Weaver" / "Allors.Immersive.Weaver.csproj",
+                SourceDirectory / "Allors.Immersive.Weaver.Tool" / "Allors.Immersive.Weaver.Tool.csproj",
             };
 
             packableProjects.ForEach(project =>

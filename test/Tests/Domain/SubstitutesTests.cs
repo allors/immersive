@@ -16,11 +16,11 @@
 //   along with this program.  If not, see http://www.gnu.org/licenses.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-namespace Immersive.Tests
+namespace Allors.Immersive.Tests
 {
     using System.IO;
 
-    using Immersive.Weaver;
+    using Allors.Immersive.Weaver;
 
     using dnlib.DotNet;
 

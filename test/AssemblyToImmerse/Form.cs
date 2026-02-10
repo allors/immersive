@@ -18,7 +18,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace AssemblyToImmerse
 {
-    using global::Immersive;
+    using global::Allors.Immersive;
 
     [SubstituteClass]
     public class Form : AssemblyReferenced.Form

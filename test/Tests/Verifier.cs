@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Xunit;
 
-namespace Immersive.Tests
+namespace Allors.Immersive.Tests
 {
     public static class Verifier
     {
