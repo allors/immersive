@@ -25,11 +25,11 @@
 
   <!-- Include .targets and task DLLs in the nupkg -->
   <ItemGroup>
-    <None Include="build\Allors.Immersive.Build.targets" Pack="true" PackagePath="build\" />
-    <None Include="lib\net48\Allors.Immersive.Build.dll" Pack="true" PackagePath="lib\net48\" />
+    <None Include="build\Allors.Immersive.MSBuild.targets" Pack="true" PackagePath="build\" />
+    <None Include="lib\net48\Allors.Immersive.MSBuild.dll" Pack="true" PackagePath="lib\net48\" />
     <None Include="lib\net48\Allors.Immersive.dll" Pack="true" PackagePath="lib\net48\" />
     <None Include="lib\net48\dnlib.dll" Pack="true" PackagePath="lib\net48\" />
-    <None Include="lib\net10.0\Allors.Immersive.Build.dll" Pack="true" PackagePath="lib\net10.0\" />
+    <None Include="lib\net10.0\Allors.Immersive.MSBuild.dll" Pack="true" PackagePath="lib\net10.0\" />
     <None Include="lib\net10.0\Allors.Immersive.dll" Pack="true" PackagePath="lib\net10.0\" />
     <None Include="lib\net10.0\dnlib.dll" Pack="true" PackagePath="lib\net10.0\" />
   </ItemGroup>

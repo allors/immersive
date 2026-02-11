@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Allors.Immersive.Weaver;
 
-namespace Allors.Immersive.GlobalTool
+namespace Allors.Immersive.Tool
 {
     public static class Program
     {

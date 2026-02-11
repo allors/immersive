@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <BaseIntermediateOutputPath>obj\Net\</BaseIntermediateOutputPath>
-    <DefaultItemExcludes>$(DefaultItemExcludes);obj\**</DefaultItemExcludes>
-  </PropertyGroup>
-  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
-  <PropertyGroup>
-    <TargetFramework>net10.0-windows</TargetFramework>
+    <TargetFrameworks>net48;net10.0-windows</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>Allors.Immersive.Winforms</RootNamespace>
     <AssemblyName>Allors.Immersive.Winforms</AssemblyName>
     <NoWarn>$(NoWarn);WFO1000</NoWarn>
     <Description>WinForms testing library for Allors.Immersive IL weaver.</Description>
   </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Allors.Immersive.Attributes\Allors.Immersive.Attributes.csproj" />
   </ItemGroup>
-  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 </Project>

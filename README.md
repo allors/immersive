@@ -1,9 +1,41 @@
 # Immersive
 
+[![Allors.Immersive](https://img.shields.io/nuget/v/Allors.Immersive?label=Allors.Immersive)](https://www.nuget.org/packages/Allors.Immersive)
+[![Allors.Immersive.Attributes](https://img.shields.io/nuget/v/Allors.Immersive.Attributes?label=Allors.Immersive.Attributes)](https://www.nuget.org/packages/Allors.Immersive.Attributes)
+[![Allors.Immersive.MSBuild](https://img.shields.io/nuget/v/Allors.Immersive.MSBuild?label=Allors.Immersive.MSBuild)](https://www.nuget.org/packages/Allors.Immersive.MSBuild)
+[![Allors.Immersive.Tool](https://img.shields.io/nuget/v/Allors.Immersive.Tool?label=Allors.Immersive.Tool)](https://www.nuget.org/packages/Allors.Immersive.Tool)
+[![Allors.Immersive.Winforms](https://img.shields.io/nuget/v/Allors.Immersive.Winforms?label=Allors.Immersive.Winforms)](https://www.nuget.org/packages/Allors.Immersive.Winforms)
+
 Immerse a library inside another library.
 
 Immersive is an IL weaver that substitutes types and methods from a referenced assembly with implementations from an "immerse" assembly.
 At compile time, it rewrites IL so that the target assembly uses the substitute types and method bodies — without changing source code.
+
+## Installation
+
+### MSBuild task (recommended)
+
+Automatically weaves your assembly after compilation:
+
+```
+dotnet add package Allors.Immersive.MSBuild
+```
+
+### CLI tool
+
+For standalone weaving from the command line:
+
+```
+dotnet tool install -g Allors.Immersive.Tool
+```
+
+### Individual packages
+
+```
+dotnet add package Allors.Immersive              # Weaving engine API
+dotnet add package Allors.Immersive.Attributes   # SubstituteClass/SubstituteMethod attributes
+dotnet add package Allors.Immersive.Winforms     # WinForms substitute types and testers
+```
 
 ## How it works
 
@@ -29,7 +61,7 @@ The weaver discovers the immerse assembly from the marker's base type, then rewr
 
 ### MSBuild task (automatic)
 
-Reference the `Allors.Immersive.Build` package in your project. It includes a `.targets` file that runs the weaver automatically after compilation:
+Reference the `Allors.Immersive.MSBuild` package in your project. It includes a `.targets` file that runs the weaver automatically after compilation:
 
 ```xml
 <Target Name="Immersive" AfterTargets="Compile">
@@ -55,7 +87,7 @@ If no search directories are specified, the directory containing the assembly is
 
 ## Attributes
 
-The `Allors.Immersive` package provides two attributes for the immerse assembly.
+The `Allors.Immersive.Attributes` package provides two attributes for the immerse assembly.
 
 ### `[SubstituteClass]`
 
@@ -145,10 +177,11 @@ The project uses [Nuke](https://nuke.build) as its build system.
 
 | Project | Description |
 |---|---|
+| `src/Allors.Immersive` | Weaving engine (dnlib-based IL rewriting) — standalone NuGet package |
 | `src/Allors.Immersive.Attributes` | Attribute definitions (`SubstituteClassAttribute`, `SubstituteMethodAttribute`) |
-| `src/Allors.Immersive` | Weaving engine (dnlib-based IL rewriting) |
-| `src/Allors.Immersive.Build` | MSBuild task that invokes the weaver after compilation |
-| `src/Allors.Immersive.GlobalTool` | CLI global tool for standalone weaving |
+| `src/Allors.Immersive.MSBuild` | MSBuild task that invokes the weaver after compilation |
+| `src/Allors.Immersive.Tool` | CLI global tool for standalone weaving |
+| `src/Allors.Immersive.Winforms` | WinForms substitute types and testers |
 | `test/AssemblyReferenced` | Test fixture — the referenced library |
 | `test/AssemblyToImmerse` | Test fixture — substitute implementations |
 | `test/AssemblyToProcess` | Test fixture — target assembly to weave |

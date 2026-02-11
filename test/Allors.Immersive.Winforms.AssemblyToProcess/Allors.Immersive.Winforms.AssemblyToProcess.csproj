@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <BaseIntermediateOutputPath>obj\Net\</BaseIntermediateOutputPath>
-    <DefaultItemExcludes>$(DefaultItemExcludes);obj\**</DefaultItemExcludes>
-  </PropertyGroup>
-  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
-  <PropertyGroup>
-    <TargetFramework>net10.0-windows</TargetFramework>
+    <TargetFrameworks>net48;net10.0-windows</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>Allors.Immersive.Winforms.AssemblyToProcess</RootNamespace>
     <AssemblyName>Allors.Immersive.Winforms.AssemblyToProcess</AssemblyName>
@@ -15,6 +10,10 @@
     <DebugSymbols>false</DebugSymbols>
     <DebugType>none</DebugType>
   </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="DefaultForm.resx" LogicalName="AllorsTestWindowsAssembly.DefaultForm.resources" />
     <EmbeddedResource Update="DialogForm.resx" LogicalName="AllorsTestWindowsAssembly.DialogForm.resources" />
@@ -24,13 +23,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Resources.Extensions" Version="9.0.3" />
-    <ProjectReference Include="..\..\src\Allors.Immersive.Winforms\Allors.Immersive.Winforms.Net.csproj" />
-    <ProjectReference Include="..\..\src\Allors.Immersive.GlobalTool\Allors.Immersive.GlobalTool.csproj" ReferenceOutputAssembly="false" SkipGetTargetFrameworkProperties="true" GlobalPropertiesToRemove="TargetFramework" />
+    <ProjectReference Include="..\..\src\Allors.Immersive.Winforms\Allors.Immersive.Winforms.csproj" />
+    <ProjectReference Include="..\..\src\Allors.Immersive.Tool\Allors.Immersive.Tool.csproj" ReferenceOutputAssembly="false" SkipGetTargetFrameworkProperties="true" GlobalPropertiesToRemove="TargetFramework" />
   </ItemGroup>
-
-  <!-- Build-time IL weaving via CLI tool (avoids MSBuild task DLL locking) -->
   <Target Name="ImmersiveWeave" AfterTargets="Build" Condition="'$(TargetFramework)' != ''">
-    <Exec Command="dotnet exec &quot;$(MSBuildProjectDirectory)\..\..\src\Allors.Immersive.GlobalTool\bin\$(Configuration)\net10.0\Allors.Immersive.GlobalTool.dll&quot; &quot;$(TargetPath)&quot; -v" />
+    <Exec Command="dotnet exec &quot;$(MSBuildProjectDirectory)\..\..\src\Allors.Immersive.Tool\bin\$(Configuration)\net10.0\Allors.Immersive.Tool.dll&quot; &quot;$(TargetPath)&quot; -v" />
   </Target>
-  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 </Project>

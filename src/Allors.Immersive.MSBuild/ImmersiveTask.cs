@@ -4,7 +4,7 @@ using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using Allors.Immersive.Weaver;
 
-namespace Allors.Immersive.Build
+namespace Allors.Immersive.MSBuild
 {
     public class ImmersiveTask : Task
     {
