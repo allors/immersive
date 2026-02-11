@@ -5,15 +5,21 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/src/">
+    <Project Path="src/Allors.Immersive.Attributes/Allors.Immersive.Attributes.csproj" />
+    <Project Path="src/Allors.Immersive.Build/Allors.Immersive.Build.csproj" />
     <Project Path="src/Allors.Immersive/Allors.Immersive.csproj" />
-    <Project Path="src/Allors.Immersive.Weaver/Allors.Immersive.Weaver.csproj" />
-    <Project Path="src/Allors.Immersive.Weaver.Core/Allors.Immersive.Weaver.Core.csproj" />
-    <Project Path="src/Allors.Immersive.Weaver.Tool/Allors.Immersive.Weaver.Tool.csproj" />
+    <Project Path="src/Allors.Immersive.GlobalTool/Allors.Immersive.GlobalTool.csproj" />
+    <Project Path="src/Allors.Immersive.Winforms/Allors.Immersive.Winforms.Framework.csproj" />
+    <Project Path="src/Allors.Immersive.Winforms/Allors.Immersive.Winforms.Net.csproj" />
   </Folder>
   <Folder Name="/test/">
-    <Project Path="test/Tests/Tests.csproj" />
-    <Project Path="test/AssemblyReferenced/AssemblyReferenced.csproj" />
-    <Project Path="test/AssemblyToImmerse/AssemblyToImmerse.csproj" />
-    <Project Path="test/AssemblyToProcess/AssemblyToProcess.csproj" />
+    <Project Path="test/Allors.Immersive.Tests/Allors.Immersive.Tests.csproj" />
+    <Project Path="test/Allors.Immersive.Winforms.AssemblyToProcess/Allors.Immersive.Winforms.AssemblyToProcess.Framework.csproj" />
+    <Project Path="test/Allors.Immersive.Winforms.AssemblyToProcess/Allors.Immersive.Winforms.AssemblyToProcess.Net.csproj" />
+    <Project Path="test/Allors.Immersive.Winforms.Tests/Allors.Immersive.Winforms.Tests.Framework.csproj" />
+    <Project Path="test/Allors.Immersive.Winforms.Tests/Allors.Immersive.Winforms.Tests.Net.csproj" />
+    <Project Path="test/Allors.Immersive.AssemblyReferenced/Allors.Immersive.AssemblyReferenced.csproj" />
+    <Project Path="test/Allors.Immersive.AssemblyToImmerse/Allors.Immersive.AssemblyToImmerse.csproj" />
+    <Project Path="test/Allors.Immersive.AssemblyToProcess/Allors.Immersive.AssemblyToProcess.csproj" />
   </Folder>
 </Solution>

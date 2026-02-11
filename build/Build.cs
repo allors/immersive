@@ -49,7 +49,19 @@ class Build : NukeBuild
         .Executes(() =>
         {
             DotNetTest(_ => _
-                .SetProjectFile(TestDirectory / "Tests" / "Tests.csproj")
+                .SetProjectFile(TestDirectory / "Allors.Immersive.Tests" / "Allors.Immersive.Tests.csproj")
+                .SetConfiguration(Configuration)
+                .EnableNoRestore()
+                .EnableNoBuild());
+
+            DotNetTest(_ => _
+                .SetProjectFile(TestDirectory / "Allors.Immersive.Winforms.Tests" / "Allors.Immersive.Winforms.Tests.Framework.csproj")
+                .SetConfiguration(Configuration)
+                .EnableNoRestore()
+                .EnableNoBuild());
+
+            DotNetTest(_ => _
+                .SetProjectFile(TestDirectory / "Allors.Immersive.Winforms.Tests" / "Allors.Immersive.Winforms.Tests.Net.csproj")
                 .SetConfiguration(Configuration)
                 .EnableNoRestore()
                 .EnableNoBuild());
@@ -61,9 +73,11 @@ class Build : NukeBuild
         {
             var packableProjects = new[]
             {
-                SourceDirectory / "Allors.Immersive" / "Allors.Immersive.csproj",
-                SourceDirectory / "Allors.Immersive.Weaver" / "Allors.Immersive.Weaver.csproj",
-                SourceDirectory / "Allors.Immersive.Weaver.Tool" / "Allors.Immersive.Weaver.Tool.csproj",
+                SourceDirectory / "Allors.Immersive.Attributes" / "Allors.Immersive.Attributes.csproj",
+                SourceDirectory / "Allors.Immersive.Build" / "Allors.Immersive.Build.csproj",
+                SourceDirectory / "Allors.Immersive.GlobalTool" / "Allors.Immersive.GlobalTool.csproj",
+                SourceDirectory / "Allors.Immersive.Winforms" / "Allors.Immersive.Winforms.Framework.csproj",
+                SourceDirectory / "Allors.Immersive.Winforms" / "Allors.Immersive.Winforms.Net.csproj",
             };
 
             packableProjects.ForEach(project =>

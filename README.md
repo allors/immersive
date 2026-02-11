@@ -29,7 +29,7 @@ The weaver discovers the immerse assembly from the marker's base type, then rewr
 
 ### MSBuild task (automatic)
 
-Reference the `Allors.Immersive.Weaver` package in your project. It includes a `.targets` file that runs the weaver automatically after compilation:
+Reference the `Allors.Immersive.Build` package in your project. It includes a `.targets` file that runs the weaver automatically after compilation:
 
 ```xml
 <Target Name="Immersive" AfterTargets="Compile">
@@ -40,7 +40,7 @@ Reference the `Allors.Immersive.Weaver` package in your project. It includes a `
 ### CLI tool
 
 ```
-immersive <assembly-path> [options]
+immerse <assembly-path> [options]
 
 Arguments:
   <assembly-path>            Path to the assembly to weave
@@ -145,10 +145,10 @@ The project uses [Nuke](https://nuke.build) as its build system.
 
 | Project | Description |
 |---|---|
-| `src/Allors.Immersive` | Attribute definitions (`SubstituteClassAttribute`, `SubstituteMethodAttribute`) |
-| `src/Allors.Immersive.Weaver.Core` | Weaving engine (dnlib-based IL rewriting) |
-| `src/Allors.Immersive.Weaver` | MSBuild task that invokes the weaver after compilation |
-| `src/Allors.Immersive.Weaver.Tool` | CLI tool for standalone weaving |
+| `src/Allors.Immersive.Attributes` | Attribute definitions (`SubstituteClassAttribute`, `SubstituteMethodAttribute`) |
+| `src/Allors.Immersive` | Weaving engine (dnlib-based IL rewriting) |
+| `src/Allors.Immersive.Build` | MSBuild task that invokes the weaver after compilation |
+| `src/Allors.Immersive.GlobalTool` | CLI global tool for standalone weaving |
 | `test/AssemblyReferenced` | Test fixture — the referenced library |
 | `test/AssemblyToImmerse` | Test fixture — substitute implementations |
 | `test/AssemblyToProcess` | Test fixture — target assembly to weave |
