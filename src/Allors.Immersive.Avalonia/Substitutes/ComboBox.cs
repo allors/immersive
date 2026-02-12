@@ -1,0 +1,41 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ComboBox.cs" company="allors bvba">
+//   Copyright 2008-2026 Allors bv.
+//
+//   This program is free software: you can redistribute it and/or modify
+//   it under the terms of the GNU Lesser General Public License as published by
+//   the Free Software Foundation, either version 3 of the License, or
+//   (at your option) any later version.
+//
+//   This program is distributed in the hope that it will be useful,
+//   but WITHOUT ANY WARRANTY; without even the implied warranty of
+//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//   GNU Lesser General Public License for more details.
+//
+//   You should have received a copy of the GNU Lesser General Public License
+//   along with this program.  If not, see http://www.gnu.org/licenses.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
+namespace Allors.Immersive.Avalonia.Substitutes
+{
+    using Allors.Immersive.Attributes;
+    using Allors.Immersive.Avalonia.Domain;
+
+    [SubstituteClass]
+    public partial class ComboBox : global::Avalonia.Controls.ComboBox, ISubstitute
+    {
+        protected override System.Type StyleKeyOverride => typeof(global::Avalonia.Controls.ComboBox);
+
+        private readonly Handle handle;
+
+        public ComboBox()
+        {
+            this.handle = Session.Singleton.Create(this);
+        }
+
+        public string SubstituteName
+        {
+            get { return Name; }
+        }
+    }
+}

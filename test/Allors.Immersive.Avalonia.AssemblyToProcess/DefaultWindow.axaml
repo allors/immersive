@@ -1,0 +1,76 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="AllorsTestAvaloniaAssembly.DefaultWindow"
+        Name="defaultWindow"
+        Title="DefaultWindow"
+        Width="400" Height="600">
+    <DockPanel Name="dockPanel1">
+        <Menu Name="menu1" DockPanel.Dock="Top">
+            <MenuItem Name="menuItem1" Header="File" />
+        </Menu>
+        <ScrollViewer Name="scrollViewer1">
+            <StackPanel Name="stackPanel1" Margin="10">
+                <Button Name="button1" Content="button1" />
+                <TextBox Name="textBox1" />
+                <CheckBox Name="checkBox1" Content="checkBox1" />
+                <TextBlock Name="textBlock1" Text="textBlock1" />
+                <RepeatButton Name="repeatButton1" Content="repeatButton1" />
+                <ToggleButton Name="toggleButton1" Content="toggleButton1" />
+                <SplitButton Name="splitButton1" Content="splitButton1" />
+                <ToggleSplitButton Name="toggleSplitButton1" Content="toggleSplitButton1" />
+                <RadioButton Name="radioButton1" Content="radioButton1" />
+
+                <Label Name="label1" Content="label1" />
+                <SelectableTextBlock Name="selectableTextBlock1" Text="selectableTextBlock1" />
+                <Separator Name="separator1" />
+                <ComboBox Name="comboBox1"><ComboBoxItem Content="Item1"/></ComboBox>
+                <ListBox Name="listBox1"><ListBoxItem Name="listBoxItem1" Content="Item1"/></ListBox>
+                <NumericUpDown Name="numericUpDown1" />
+                <Slider Name="slider1" />
+                <ProgressBar Name="progressBar1" Value="50" />
+                <DatePicker Name="datePicker1" />
+                <TimePicker Name="timePicker1" />
+                <CalendarDatePicker Name="calendarDatePicker1" />
+                <Calendar Name="calendar1" />
+                <AutoCompleteBox Name="autoCompleteBox1" />
+                <Expander Name="expander1" Header="Expander">
+                    <TextBlock Text="Content" />
+                </Expander>
+                <TabControl Name="tabControl1">
+                    <TabItem Name="tabItem1" Header="Tab1"><TextBlock Text="Tab1" /></TabItem>
+                    <TabItem Name="tabItem2" Header="Tab2"><TextBlock Text="Tab2" /></TabItem>
+                </TabControl>
+                <TreeView Name="treeView1">
+                    <TreeViewItem Name="treeViewItem1" Header="Node1" />
+                </TreeView>
+                <Border Name="border1" BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="Bordered" />
+                </Border>
+                <Canvas Name="canvas1" Height="50" />
+                <Grid Name="grid1" Height="50" />
+                <WrapPanel Name="wrapPanel1" />
+                <Panel Name="panel1" Height="50" />
+                <Image Name="image1" />
+                <GridSplitter Name="gridSplitter1" />
+                <Viewbox Name="viewbox1"><TextBlock Text="V" /></Viewbox>
+                <Carousel Name="carousel1" />
+                <ContentControl Name="contentControl1" />
+                <ItemsControl Name="itemsControl1" />
+                <SplitView Name="splitView1" DisplayMode="Inline" IsPaneOpen="True">
+                    <SplitView.Pane>
+                        <TextBlock Text="Pane" />
+                    </SplitView.Pane>
+                </SplitView>
+                <ToggleSwitch Name="toggleSwitch1" />
+                <UserControl Name="userControl1" />
+                <Button Name="buttonWithContextMenu" Content="Right-click me">
+                    <Button.ContextMenu>
+                        <ContextMenu Name="contextMenu1">
+                            <MenuItem Header="Context Item" />
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

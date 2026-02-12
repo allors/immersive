@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Allors.Immersive.Avalonia.Tests</RootNamespace>
+    <AssemblyName>Allors.Immersive.Avalonia.Tests</AssemblyName>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.2.*" />
+    <PackageReference Include="Avalonia.Headless" Version="11.2.*" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit.v3" Version="3.2.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <ProjectReference Include="..\..\src\Allors.Immersive.Avalonia\Allors.Immersive.Avalonia.csproj" />
+    <ProjectReference Include="..\Allors.Immersive.Avalonia.AssemblyToProcess\Allors.Immersive.Avalonia.AssemblyToProcess.csproj" />
+  </ItemGroup>
+</Project>

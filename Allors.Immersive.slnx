@@ -10,9 +10,12 @@
     <Project Path="src/Allors.Immersive/Allors.Immersive.csproj" />
     <Project Path="src/Allors.Immersive.Tool/Allors.Immersive.Tool.csproj" />
     <Project Path="src/Allors.Immersive.Winforms/Allors.Immersive.Winforms.csproj" />
+    <Project Path="src/Allors.Immersive.Avalonia/Allors.Immersive.Avalonia.csproj" />
   </Folder>
   <Folder Name="/test/">
     <Project Path="test/Allors.Immersive.Tests/Allors.Immersive.Tests.csproj" />
+    <Project Path="test/Allors.Immersive.Avalonia.AssemblyToProcess/Allors.Immersive.Avalonia.AssemblyToProcess.csproj" />
+    <Project Path="test/Allors.Immersive.Avalonia.Tests/Allors.Immersive.Avalonia.Tests.csproj" />
     <Project Path="test/Allors.Immersive.Winforms.AssemblyToProcess/Allors.Immersive.Winforms.AssemblyToProcess.csproj" />
     <Project Path="test/Allors.Immersive.Winforms.Tests/Allors.Immersive.Winforms.Tests.csproj" />
     <Project Path="test/Allors.Immersive.AssemblyReferenced/Allors.Immersive.AssemblyReferenced.csproj" />

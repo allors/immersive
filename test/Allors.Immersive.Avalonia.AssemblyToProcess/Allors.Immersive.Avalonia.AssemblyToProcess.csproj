@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Allors.Immersive.Avalonia.AssemblyToProcess</RootNamespace>
+    <AssemblyName>Allors.Immersive.Avalonia.AssemblyToProcess</AssemblyName>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.2.*" />
+    <ProjectReference Include="..\..\src\Allors.Immersive.Avalonia\Allors.Immersive.Avalonia.csproj" />
+    <ProjectReference Include="..\..\src\Allors.Immersive.Tool\Allors.Immersive.Tool.csproj" ReferenceOutputAssembly="false" SkipGetTargetFrameworkProperties="true" GlobalPropertiesToRemove="TargetFramework" />
+  </ItemGroup>
+  <Target Name="ImmersiveWeave" AfterTargets="Build" Condition="'$(TargetFramework)' != ''">
+    <Exec Command="dotnet exec &quot;$(MSBuildProjectDirectory)\..\..\src\Allors.Immersive.Tool\bin\$(Configuration)\net10.0\Allors.Immersive.Tool.dll&quot; &quot;$(TargetPath)&quot; -v" />
+  </Target>
+</Project>
