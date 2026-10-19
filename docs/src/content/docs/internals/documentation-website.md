@@ -1,14 +1,15 @@
 ---
 title: "Documentation website"
-description: "The adoption of the Allors3 documentation standard for Immersive, what was reused, how it was validated, and the unpublished state of the website."
+description: "The adoption of the Allors3 documentation standard for Immersive, what was reused, how it was validated, and where the website is published."
 audience: "Maintainers"
 kind: "Decision record"
-status: "Planned"
+status: "Current"
 ---
 
-> **Status: Planned.** The website, its Markdown exports and the checks that the documentation
-> workflow runs are built and pass for both deployment paths. Publication to GitHub Pages has not
-> been run and the repository's Pages settings are unchanged.
+> **Status: Current.** The website, its Markdown exports and the checks that the documentation
+> workflow runs are built and pass for both deployment paths, and the website is published at
+> `https://docs.allors.com/immersive/`, beneath the Allors documentation home, from the
+> repository's Pages source **GitHub Actions**.
 
 This record describes the documentation website of Immersive: what was decided, what was reused
 from Allors3 and what remains to do. The [writing guide](writing-documentation.md) owns the
@@ -31,7 +32,7 @@ to its scope, with the same writing and accuracy standard.
 | Readers | Human documentation serves users of the weaver and the libraries, and maintainers. Agent instructions in `AGENTS.md` point to the same content. |
 | Site | Astro with Starlight. `docs/` is the website project, with the content in `docs/src/content/docs/`. User and maintainer content have separate navigation groups. |
 | Authoring | Markdown. MDX and components are available when a page needs them; none is used yet. |
-| Hosting | GitHub Pages, built with GitHub Actions, at the path `/immersive/` beneath the shared origin `https://allors.github.io`, with `/` also validated. |
+| Hosting | GitHub Pages, built with GitHub Actions, at the path `/immersive/` beneath the shared origin `https://docs.allors.com`, whose root is the Allors documentation home, with `/` also validated. The sidebar's first entry links to the home, and the link checker leaves that link to the home's own build. The origin's own site and its custom domain belong to the documentation home, not to this repository. |
 | Version context | Pages and exports identify the documented version as `main · v2.1 (preview)`, following `version.json` and the published preview packages. |
 | Visuals | Mermaid where suitable; the dependency diagram in [How weaving works](../weaving.md) is the first. No interactive component yet. |
 | Language and structure | Oxford English, precise practitioner terminology and Diátaxis, as defined in the writing guide. |
@@ -81,11 +82,6 @@ requires editorial review of changed pages and of representative exports.
 
 ## Remaining work
 
-- Publish the site: configure the repository's Pages source as GitHub Actions and its
-  `github-pages` environment, then run the `Documentation` workflow on `main` with `publish`
-  selected. The shared origin's own site and the custom domain are decisions of the documentation
-  home, not of this repository.
 - Decide with the other Allors repositories whether to extract the reused tooling.
-- Revisit this record when the MSBuild package is changed, when `Allors.Immersive.Avalonia` is
-  published, and when the website is published; mark it Historical once publication has run and
-  the index links to the published site.
+- Revisit this record when the MSBuild package is changed and when `Allors.Immersive.Avalonia` is
+  published.
