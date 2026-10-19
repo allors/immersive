@@ -56,6 +56,8 @@ generated: after adding or renaming a substitute or tester, or adding a tester m
 `members` list in `scripts/controls-table.mjs` when needed, run `node scripts/controls-table.mjs`
 from `docs/` and replace the rows with its output. `npm test` fails while the rows differ from
 that output or a tester is missing from the page; it does not check the listed tester members.
+The event column includes events inherited from other substitute classes. Framework base classes
+do not contribute testing events.
 
 ## Check a change
 
@@ -113,7 +115,10 @@ Markdown after changing a diagram or component.
 ## Publish
 
 The [documentation workflow](../.github/workflows/documentation.yml) checks relevant pull
-requests and changes to `main`. Those events validate the site without publishing it.
+requests and changes to `main`, including documentation files and the source directories
+`src/Allors.Immersive.Winforms/` and `src/Allors.Immersive.Avalonia/`. Changes to either library
+run the control-table consistency checks along with the other website checks. Those events
+validate the site without publishing it.
 
 After publication has been approved, configure the repository's Pages source as **GitHub
 Actions** and its `github-pages` environment for deployment from `main`. Run the

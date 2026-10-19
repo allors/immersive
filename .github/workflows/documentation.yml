@@ -9,6 +9,8 @@ on:
       - '.github/workflows/documentation.yml'
       - 'AGENTS.md'
       - 'README.md'
+      - 'src/Allors.Immersive.Winforms/**'
+      - 'src/Allors.Immersive.Avalonia/**'
   push:
     branches:
       - main
@@ -17,6 +19,8 @@ on:
       - '.github/workflows/documentation.yml'
       - 'AGENTS.md'
       - 'README.md'
+      - 'src/Allors.Immersive.Winforms/**'
+      - 'src/Allors.Immersive.Avalonia/**'
   workflow_dispatch:
     inputs:
       publish:

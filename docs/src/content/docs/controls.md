@@ -62,7 +62,7 @@ substitute derives from the type it replaces.
 | `System.Windows.Forms.MessageBox` | `MessageBox` | Static `Show` overloads | `MessageBoxTester` | Shown |  |
 | `System.Windows.Forms.MonthCalendar` | `MonthCalendar` | Base | `MonthCalendarTester` |  |  |
 | `System.Windows.Forms.NumericUpDown` | `NumericUpDown` | Base | `NumericUpDownTester` |  |  |
-| `System.Windows.Forms.OpenFileDialog` | `OpenFileDialog` | Explicit | `OpenFileDialogTester` |  |  |
+| `System.Windows.Forms.OpenFileDialog` | `OpenFileDialog` | Explicit | `OpenFileDialogTester` | Shown |  |
 | `System.Windows.Forms.PageSetupDialog` | `PageSetupDialog` | Explicit | `PageSetupDialogTester` | Shown |  |
 | `System.Windows.Forms.Panel` | `Panel` | Base | `PanelTester` |  |  |
 | `System.Windows.Forms.PictureBox` | `PictureBox` | Base | `PictureBoxTester` |  |  |
@@ -73,7 +73,7 @@ substitute derives from the type it replaces.
 | `System.Windows.Forms.PropertyGrid` | `PropertyGrid` | Base | `PropertyGridTester` |  | `FindGridItem(params string[] names)` |
 | `System.Windows.Forms.RadioButton` | `RadioButton` | Base | `RadioButtonTester` |  |  |
 | `System.Windows.Forms.RichTextBox` | `RichTextBox` | Base | `RichTextBoxTester` |  |  |
-| `System.Windows.Forms.SaveFileDialog` | `SaveFileDialog` | Explicit | `SaveFileDialogTester` |  |  |
+| `System.Windows.Forms.SaveFileDialog` | `SaveFileDialog` | Explicit | `SaveFileDialogTester` | Shown |  |
 | `System.Windows.Forms.SplitContainer` | `SplitContainer` | Base | `SplitContainerTester` |  |  |
 | `System.Windows.Forms.Splitter` | `Splitter` | Base | `SplitterTester` |  |  |
 | `System.Windows.Forms.StatusBar` | `StatusBar` | Base | `StatusBarTester` |  |  |

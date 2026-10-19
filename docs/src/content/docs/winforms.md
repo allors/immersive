@@ -30,7 +30,7 @@ the output after each build:
 <ItemGroup>
   <PackageReference Include="Allors.Immersive.Winforms" Version="2.1.10-preview" />
 </ItemGroup>
-<Target Name="Immerse" AfterTargets="Build">
+<Target Name="Immerse" AfterTargets="Build" Condition="'$(IsCrossTargetingBuild)' != 'true'">
   <Exec Command="dotnet immerse &quot;$(TargetPath)&quot; -v" />
 </Target>
 ```

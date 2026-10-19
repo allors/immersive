@@ -45,3 +45,12 @@ for (const [heading, library, kind] of [
     assert.deepEqual([...new Set(listed)].sort(), testers, `Every tester of the ${library} library is listed in its section.`);
   });
 }
+
+test('file dialog rows include the Shown event inherited from the substitute FileDialog', () => {
+  const generated = controlRows('Winforms', 'TestingWinformsEventKind');
+  for (const name of ['OpenFileDialog', 'SaveFileDialog']) {
+    const row = generated.find((line) => line.split(' | ')[1] === `\`${name}\``);
+    assert.ok(row, `${name} has a generated row`);
+    assert.equal(row.split(' | ')[4], 'Shown', `${name} reports its inherited Shown event`);
+  }
+});

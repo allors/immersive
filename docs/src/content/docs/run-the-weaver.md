@@ -50,7 +50,7 @@ Run the tool after every build of the target project, because each build writes 
 unwoven assembly. Add a target after `Build` to the project file:
 
 ```xml
-<Target Name="Immerse" AfterTargets="Build">
+<Target Name="Immerse" AfterTargets="Build" Condition="'$(IsCrossTargetingBuild)' != 'true'">
   <Exec Command="dotnet immerse &quot;$(TargetPath)&quot; -v" />
 </Target>
 ```
@@ -58,7 +58,10 @@ unwoven assembly. Add a target after `Build` to the project file:
 The target runs for incremental builds too: the build copies the unwoven intermediate assembly
 from `obj/` to the output directory again, because the woven file differs from it, and the
 target weaves that fresh copy. For a multi-targeted project it runs once per target framework,
-each with its own `$(TargetPath)`. The repository's own fixture applications use this form with
+each with its own `$(TargetPath)`. The condition skips the outer build of an SDK-style project,
+where `IsCrossTargetingBuild` is `true` and `TargetPath` is empty. It still runs for single-target
+projects, including older .NET Framework project files. The repository's own fixture applications
+also weave after `Build`, with a guard for their SDK-style targets and
 the tool built from source; see
 [`Allors.Immersive.Winforms.AssemblyToProcess.csproj`](../../../../test/Allors.Immersive.Winforms.AssemblyToProcess/Allors.Immersive.Winforms.AssemblyToProcess.csproj).
 

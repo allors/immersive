@@ -187,7 +187,7 @@ A build writes a fresh, unwoven `App.dll`, so the tool has to run after every bu
 target to `App/App.csproj`, inside the `<Project>` element:
 
 ```xml
-<Target Name="Immerse" AfterTargets="Build">
+<Target Name="Immerse" AfterTargets="Build" Condition="'$(IsCrossTargetingBuild)' != 'true'">
   <Exec Command="dotnet immerse &quot;$(TargetPath)&quot; -v" />
 </Target>
 ```

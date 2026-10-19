@@ -39,8 +39,8 @@ to its scope, with the same writing and accuracy standard.
 
 ## What was reused
 
-The following files were copied from the Allors3 implementation at the commit above, with only
-the project's name, repository, branch, version, base path and page names changed:
+The following files were copied from the Allors3 implementation at the commit above, with
+the project-specific changes listed below:
 
 | File | Change for Immersive |
 | --- | --- |
@@ -53,7 +53,7 @@ the project's name, repository, branch, version, base path and page names change
 | `package.json`, `package-lock.json` | The package name; the pinned dependency versions are identical. |
 | `tests/exports.test.mjs`, `tests/links.test.mjs`, `tests/source-links.test.mjs`, `tests/fixtures/anchors.md` | Base paths, repository paths and version strings. |
 | `tests/browser/documentation.spec.ts` | The page names, the diagram and the table it exercises; the workspace example tests were dropped. |
-| `.github/workflows/documentation.yml` | The base path matrix. |
+| `.github/workflows/documentation.yml` | The base path matrix; source changes to the Windows Forms and Avalonia libraries also trigger validation of the control tables. |
 
 Two additions are specific to Immersive: `scripts/controls-table.mjs` generates the rows of the
 tables of [Substituted controls and testers](../controls.md) from the library sources and from

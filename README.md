@@ -85,7 +85,7 @@ dotnet add package Allors.Immersive --prerelease               # the weaving eng
 Weave the compiled assembly after each build, for example from a target in the project file:
 
 ```xml
-<Target Name="Immerse" AfterTargets="Build">
+<Target Name="Immerse" AfterTargets="Build" Condition="'$(IsCrossTargetingBuild)' != 'true'">
   <Exec Command="dotnet immerse &quot;$(TargetPath)&quot; -v" />
 </Target>
 ```

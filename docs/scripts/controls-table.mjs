@@ -43,8 +43,15 @@ export function controlRows(library, kind) {
   const base = path.join(root, 'src', `Allors.Immersive.${library}`);
   const substitutes = path.join(base, 'Substitutes');
   const testers = names(path.join(base, 'Testers'), 'Tester.cs');
-  return names(substitutes, '.cs').map((name) => {
+  const classes = new Map(names(substitutes, '.cs').map((name) => {
     const source = read(path.join(substitutes, `${name}.cs`));
+    const namespace = source.match(/\bnamespace\s+([A-Za-z0-9_.]+)/)?.[1];
+    if (!namespace) throw new Error(`${library}/${name}: cannot find the namespace.`);
+    const baseClass = source.match(new RegExp(`class ${name}\\s*:\\s*((?:global::)?[A-Za-z0-9_.]+)`))?.[1];
+    return [name, { source, namespace, baseClass }];
+  }));
+  const qualifiedNames = new Map([...classes].map(([name, { namespace }]) => [`${namespace}.${name}`, name]));
+  return [...classes].map(([name, { source, baseClass }]) => {
     let mode;
     let target;
     const explicit = source.match(/SubstituteClass\(typeof\s*\(([^)]*)\)\)/);
@@ -53,9 +60,8 @@ export function controlRows(library, kind) {
       target = explicit[1].replace(/\s/g, '');
     } else if (/\[SubstituteClass\]/.test(source)) {
       mode = 'Base';
-      const declaration = source.match(new RegExp(`class ${name}\\s*:\\s*(?:global::)?([A-Za-z0-9_.]+)`));
-      if (!declaration) throw new Error(`${library}/${name}: cannot find the base class in the class declaration.`);
-      target = declaration[1];
+      if (!baseClass) throw new Error(`${library}/${name}: cannot find the base class in the class declaration.`);
+      target = baseClass.replace(/^global::/, '');
     } else {
       mode = 'Static `Show` overloads';
       const method = source.match(/SubstituteMethod\(typeof\s*\(([^)]*)\)\)/);
@@ -63,12 +69,24 @@ export function controlRows(library, kind) {
       target = method[1].replace(/\s/g, '');
     }
     const events = new Set();
-    for (const file of [path.join(substitutes, `${name}.cs`), path.join(substitutes, 'events', `${name}.cs`)]) {
-      try {
-        for (const match of read(file).matchAll(new RegExp(`${kind}\\.([A-Za-z]+)`, 'g'))) events.add(match[1]);
-      } catch (error) {
-        if (error.code !== 'ENOENT') throw error;
+    const visited = new Set();
+    for (let current = name; current;) {
+      if (visited.has(current)) throw new Error(`${library}/${name}: cyclic substitute inheritance through ${current}.`);
+      visited.add(current);
+      for (const file of [path.join(substitutes, `${current}.cs`), path.join(substitutes, 'events', `${current}.cs`)]) {
+        try {
+          for (const match of read(file).matchAll(new RegExp(`${kind}\\.([A-Za-z]+)`, 'g'))) events.add(match[1]);
+        } catch (error) {
+          if (error.code !== 'ENOENT') throw error;
+        }
       }
+      const ancestor = classes.get(current);
+      if (!ancestor.baseClass) break;
+      // Follow local substitutes only; a framework class with the same name is a different type.
+      const qualifiedBase = ancestor.baseClass.startsWith('global::')
+        ? ancestor.baseClass.slice('global::'.length)
+        : ancestor.baseClass.includes('.') ? ancestor.baseClass : `${ancestor.namespace}.${ancestor.baseClass}`;
+      current = qualifiedNames.get(qualifiedBase);
     }
     const tester = testers.includes(name) ? `\`${name}Tester\`` : '—';
     return `| \`${target}\` | \`${name}\` | ${mode} | ${tester} | ${[...events].sort().join(', ')} | ${members[library][name] ?? ''} |`;
