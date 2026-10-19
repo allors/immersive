@@ -87,6 +87,6 @@ There are no tags or GitHub releases; nuget.org is the record of what was publis
 
 The website in `docs/` has its own checks; the [website instructions](../../../../README.md)
 list them, and the `Documentation` workflow runs them for changes to `docs/`, its workflow file,
-`AGENTS.md`, `README.md` and the Windows Forms and Avalonia library sources. Checking source
-changes catches control tables that no longer match the libraries. Publication of the website
-is a manual step described there.
+`AGENTS.md`, `README.md` and the sources of the Windows Forms and Avalonia libraries, so that a
+library change which leaves the control tables stale fails `npm test` there. Publication of the
+website is a manual step described there.

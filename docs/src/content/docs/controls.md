@@ -11,8 +11,9 @@ status: "Current"
 > in that script; `npm test` fails when the rows differ from its output or a tester is missing.
 
 Each row names a type of the UI framework, the substitute class that replaces it, the kind of
-substitution, the tester that finds it by name, the testing events the substitute raises, and the
-members the tester adds beyond `Target` and `Handle`.
+substitution, the tester that finds it by name, the testing events the substitute raises, including
+those it inherits from another substitute class, and the members the tester adds beyond `Target`
+and `Handle`.
 [Test a Windows Forms application](winforms.md) and [Test an Avalonia application](avalonia.md)
 explain how to use them.
 

@@ -27,7 +27,9 @@ documentation; this file says where to find them and how to work here.
   control. Regenerate the tables of
   [Substituted controls and testers](docs/src/content/docs/controls.md) with
   `node scripts/controls-table.mjs` from `docs/`, after adding any new tester member to the
-  `members` list in that script; `npm test` does not check the listed members.
+  `members` list in that script; `npm test` does not check the listed members. The
+  `Documentation` workflow runs `npm test` for changes under the two library directories, so
+  stale tables fail that check.
 - The published MSBuild package fails a fresh `dotnet build`; the documented and validated change
   is in [Weaver internals](docs/src/content/docs/internals/weaver.md#msbuild-package). Do not
   describe the package as working until that change has shipped.

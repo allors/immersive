@@ -43,8 +43,8 @@ public class ImmersiveMarker : Allors.Immersive.Winforms.Marker
 #endif
 ```
 
-[Run the weaver](run-the-weaver.md) explains the tool, the target and the `DEBUG` guard. The
-repository's fixture application,
+[Run the weaver](run-the-weaver.md) explains the tool, the target, its condition and the `DEBUG`
+guard. The repository's fixture application,
 [`Allors.Immersive.Winforms.AssemblyToProcess`](../../../../test/Allors.Immersive.Winforms.AssemblyToProcess/Allors.Immersive.Winforms.AssemblyToProcess.csproj),
 is set up this way with the tool built from source. After the weave, every `Form`, `Button`,
 `TextBox` and other substituted type that the application creates is an instance of the

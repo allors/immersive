@@ -53,7 +53,7 @@ the project-specific changes listed below:
 | `package.json`, `package-lock.json` | The package name; the pinned dependency versions are identical. |
 | `tests/exports.test.mjs`, `tests/links.test.mjs`, `tests/source-links.test.mjs`, `tests/fixtures/anchors.md` | Base paths, repository paths and version strings. |
 | `tests/browser/documentation.spec.ts` | The page names, the diagram and the table it exercises; the workspace example tests were dropped. |
-| `.github/workflows/documentation.yml` | The base path matrix; source changes to the Windows Forms and Avalonia libraries also trigger validation of the control tables. |
+| `.github/workflows/documentation.yml` | The base path matrix, and the sources of the Windows Forms and Avalonia libraries as trigger paths, so that a library change runs the control-table test. |
 
 Two additions are specific to Immersive: `scripts/controls-table.mjs` generates the rows of the
 tables of [Substituted controls and testers](../controls.md) from the library sources and from

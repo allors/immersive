@@ -90,6 +90,9 @@ Weave the compiled assembly after each build, for example from a target in the p
 </Target>
 ```
 
+The condition keeps the target out of the outer build of a project with several target
+frameworks, where `$(TargetPath)` is empty.
+
 `Allors.Immersive.MSBuild` packages the weaver as an MSBuild task, but `2.1.10-preview`, the
 version published when this was checked on 2026-10-18, fails a fresh `dotnet build`, because the
 task runs before the output assembly exists. Use the tool until a corrected version ships; see

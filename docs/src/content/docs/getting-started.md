@@ -192,6 +192,9 @@ target to `App/App.csproj`, inside the `<Project>` element:
 </Target>
 ```
 
+The condition matters only for a project with several target frameworks;
+[Run the weaver](run-the-weaver.md#weave-from-the-build) explains it.
+
 `dotnet build App` now ends with the weaver's messages, and `dotnet run --project App` builds,
 weaves and prints the substituted output; incremental builds weave again. A Release build has
 no marker:

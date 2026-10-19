@@ -57,12 +57,15 @@ unwoven assembly. Add a target after `Build` to the project file:
 
 The target runs for incremental builds too: the build copies the unwoven intermediate assembly
 from `obj/` to the output directory again, because the woven file differs from it, and the
-target weaves that fresh copy. For a multi-targeted project it runs once per target framework,
-each with its own `$(TargetPath)`. The condition skips the outer build of an SDK-style project,
-where `IsCrossTargetingBuild` is `true` and `TargetPath` is empty. It still runs for single-target
-projects, including older .NET Framework project files. The repository's own fixture applications
-also weave after `Build`, with a guard for their SDK-style targets and
-the tool built from source; see
+target weaves that fresh copy. For a project with several target frameworks it runs once per
+framework, each with its own `$(TargetPath)`. Such a project also has an outer build that
+dispatches the builds per framework; there `IsCrossTargetingBuild` is `true` and `TargetPath` is
+empty, and without the condition the target would run the tool on an empty path and fail the
+build. A project with one target framework, including a .NET Framework project in the older
+project format, never sets the property, so the condition leaves it unaffected. The repository's
+own fixture applications weave the same way with the tool built from source, guarded by the
+condition `'$(TargetFramework)' != ''`, because `TargetFramework` is empty in the outer build
+too; see the project file
 [`Allors.Immersive.Winforms.AssemblyToProcess.csproj`](../../../../test/Allors.Immersive.Winforms.AssemblyToProcess/Allors.Immersive.Winforms.AssemblyToProcess.csproj).
 
 A project that references the woven project builds it first, and the woven output is what gets
@@ -129,4 +132,5 @@ them compile references of the project and copies them to its output. Reference 
 | `Could not resolve assembly 'X'` | The immerse assembly `X.dll` is neither in a search directory nor next to the target. Pass `-s` with its directory. |
 | The woven assembly fails at run time with an exception such as `InvalidProgramException` or `MissingMethodException` | A substitute does not match what the target uses: a constructor with different parameters, or an explicitly substituted member the substitute does not declare. See [Substitute classes](weaving.md#substitute-classes). |
 | The output is unwoven after `dotnet run` | The build rewrote the assembly after the weave. Run the weaver from a target after `Build`, as above. |
+| The `Immerse` target fails with `MSB3073` and the command in the message has an empty path, `dotnet immerse "" -v` | The target ran in the outer build of a project with several target frameworks, where `TargetPath` is empty. Add the `IsCrossTargetingBuild` condition shown above. Observed with `2.1.10-preview` on 2026-10-19. |
 | `dotnet immerse` is not found | The tool manifest is in another directory, the tool is not installed, or no .NET 10 or later runtime is present. |

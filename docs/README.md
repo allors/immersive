@@ -56,8 +56,9 @@ generated: after adding or renaming a substitute or tester, or adding a tester m
 `members` list in `scripts/controls-table.mjs` when needed, run `node scripts/controls-table.mjs`
 from `docs/` and replace the rows with its output. `npm test` fails while the rows differ from
 that output or a tester is missing from the page; it does not check the listed tester members.
-The event column includes events inherited from other substitute classes. Framework base classes
-do not contribute testing events.
+The generator follows inheritance between the substitute classes of a library, so the events
+column includes the events a substitute inherits from another substitute class; it does not look
+into framework classes.
 
 ## Check a change
 
@@ -114,11 +115,11 @@ Markdown after changing a diagram or component.
 
 ## Publish
 
-The [documentation workflow](../.github/workflows/documentation.yml) checks relevant pull
-requests and changes to `main`, including documentation files and the source directories
-`src/Allors.Immersive.Winforms/` and `src/Allors.Immersive.Avalonia/`. Changes to either library
-run the control-table consistency checks along with the other website checks. Those events
-validate the site without publishing it.
+The [documentation workflow](../.github/workflows/documentation.yml) validates the website,
+without publishing it, for pull requests and pushes to `main` that change `docs/`, the workflow
+file, `AGENTS.md`, `README.md` or the sources of the Windows Forms and Avalonia libraries. The
+library paths are included so that `npm test` fails when a library change leaves the control
+tables stale.
 
 After publication has been approved, configure the repository's Pages source as **GitHub
 Actions** and its `github-pages` environment for deployment from `main`. Run the
