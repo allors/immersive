@@ -47,10 +47,14 @@ export function controlRows(library, kind) {
     const source = read(path.join(substitutes, `${name}.cs`));
     const namespace = source.match(/\bnamespace\s+([A-Za-z0-9_.]+)/)?.[1];
     if (!namespace) throw new Error(`${library}/${name}: cannot find the namespace.`);
-    const baseClass = source.match(new RegExp(`class ${name}\\s*:\\s*((?:global::)?[A-Za-z0-9_.]+)`))?.[1];
+    const baseClass = source.match(new RegExp(`class ${name}\\s*:\\s*(?:global::)?([A-Za-z0-9_.]+)`))?.[1];
     return [name, { source, namespace, baseClass }];
   }));
   const qualifiedNames = new Map([...classes].map(([name, { namespace }]) => [`${namespace}.${name}`, name]));
+  // The substitute class of this library that a class derives from, or undefined when it derives from a
+  // framework class. An unqualified base name resolves in the namespace of the deriving class, as in C#.
+  const substituteBase = ({ namespace, baseClass }) =>
+    baseClass && qualifiedNames.get(baseClass.includes('.') ? baseClass : `${namespace}.${baseClass}`);
   return [...classes].map(([name, { source, baseClass }]) => {
     let mode;
     let target;
@@ -61,16 +65,17 @@ export function controlRows(library, kind) {
     } else if (/\[SubstituteClass\]/.test(source)) {
       mode = 'Base';
       if (!baseClass) throw new Error(`${library}/${name}: cannot find the base class in the class declaration.`);
-      target = baseClass.replace(/^global::/, '');
+      target = baseClass;
     } else {
       mode = 'Static `Show` overloads';
       const method = source.match(/SubstituteMethod\(typeof\s*\(([^)]*)\)\)/);
       if (!method) throw new Error(`${library}/${name}: neither SubstituteClass nor SubstituteMethod found.`);
       target = method[1].replace(/\s/g, '');
     }
+    // A substitute raises the events of its own code and of the substitute classes it derives from.
     const events = new Set();
     const visited = new Set();
-    for (let current = name; current;) {
+    for (let current = name; current; current = substituteBase(classes.get(current))) {
       if (visited.has(current)) throw new Error(`${library}/${name}: cyclic substitute inheritance through ${current}.`);
       visited.add(current);
       for (const file of [path.join(substitutes, `${current}.cs`), path.join(substitutes, 'events', `${current}.cs`)]) {
@@ -80,13 +85,6 @@ export function controlRows(library, kind) {
           if (error.code !== 'ENOENT') throw error;
         }
       }
-      const ancestor = classes.get(current);
-      if (!ancestor.baseClass) break;
-      // Follow local substitutes only; a framework class with the same name is a different type.
-      const qualifiedBase = ancestor.baseClass.startsWith('global::')
-        ? ancestor.baseClass.slice('global::'.length)
-        : ancestor.baseClass.includes('.') ? ancestor.baseClass : `${ancestor.namespace}.${ancestor.baseClass}`;
-      current = qualifiedNames.get(qualifiedBase);
     }
     const tester = testers.includes(name) ? `\`${name}Tester\`` : '—';
     return `| \`${target}\` | \`${name}\` | ${mode} | ${tester} | ${[...events].sort().join(', ')} | ${members[library][name] ?? ''} |`;
