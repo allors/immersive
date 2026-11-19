@@ -7,6 +7,9 @@ const source = fileURLToPath(new URL('../src/content/docs/internals/weaver.md', 
 
 test('source links become site links at a project or domain root', () => {
   assert.equal(rewriteLink('../attributes.md#substituteclassattribute', source, '/immersive/'), '/immersive/attributes/#substituteclassattribute');
+  for (const base of ['/immersive/', '/']) {
+    assert.equal(rewriteLink('build-and-release.md#packaging', source, base), `${base}internals/build-and-release/#packaging`);
+  }
   assert.equal(rewriteLink('../index.md', source, '/'), '/');
   assert.equal(rewriteLink('#assembly-resolution', source, '/immersive/'), '#assembly-resolution');
 });
