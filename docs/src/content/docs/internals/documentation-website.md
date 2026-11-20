@@ -48,11 +48,12 @@ the project-specific changes listed below:
 | `astro.config.mjs` | Title, description, sidebar entries; the title is read from `site.mjs`. |
 | `site.mjs` | Adds `title`; sets the repository, version and the default base path `/immersive/`. |
 | `integrations/exports.mjs` | The agent index heading and description are built from `site.mjs`. |
-| `integrations/source-links.mjs`, `integrations/scrollable-content.mjs` | Unchanged. |
+| `integrations/source-links.mjs` | Unchanged at the adoption. It wrote a link to a page in a subfolder with a backslash on Windows; since [#6](https://github.com/allors/immersive/pull/6) it gives the path forward slashes on every platform. The fix comes from Allors3 and is in every copy of the tooling. |
+| `integrations/scrollable-content.mjs` | Unchanged. |
 | `scripts/check-links.mjs` | The default base path. Target paths in its messages use forward slashes on every platform, so that its tests pass on Windows; port this to Allors3. |
 | `src/content.config.ts`, `src/components/PageTitle.astro`, `src/styles/documentation.css`, `public/favicon.ico`, `tsconfig.json`, `playwright.config.ts`, `.gitignore` | Unchanged. |
 | `package.json`, `package-lock.json` | The package name; the pinned dependency versions are identical. |
-| `tests/exports.test.mjs`, `tests/links.test.mjs`, `tests/source-links.test.mjs`, `tests/fixtures/anchors.md` | Base paths, repository paths and version strings. |
+| `tests/exports.test.mjs`, `tests/links.test.mjs`, `tests/source-links.test.mjs`, `tests/fixtures/anchors.md` | Base paths, repository paths and version strings. Since #6, `source-links.test.mjs` also checks a link to a page in a subfolder. |
 | `tests/browser/documentation.spec.ts` | The page names, the diagram and the table it exercises; the workspace example tests were dropped. |
 | `.github/workflows/documentation.yml` | The base path matrix, and the sources of the Windows Forms and Avalonia libraries as trigger paths, so that a library change runs the control-table test. |
 
