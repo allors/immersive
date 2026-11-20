@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { parseHTML } from 'linkedom';
 import TurndownService from 'turndown';
 import { gfm } from 'turndown-plugin-gfm';
-import { title } from '../site.mjs';
+import { title, description, audiences as order } from '../site.mjs';
 
 const metadataFields = ['title', 'description', 'audience', 'kind', 'status', 'version', 'slug'];
 
@@ -139,15 +139,14 @@ function createIndex(pages, root, converter) {
   const lines = [
     `# ${title} documentation`,
     '',
-    '> Human documentation for users of the Immersive IL weaver and for its maintainers, exported from the same content as the website.',
+    `> ${description} Exported from the same content as the website.`,
     '',
     `Documented version: ${versions.join('; ')}. Use documentation from the relevant checkout when working on another branch or version.`,
     '',
     'The links below point to Markdown exports. Audience, kind and status describe each page independently. This index follows the llms.txt discovery proposal; repository instructions remain in AGENTS.md.',
   ];
   const audiences = [...new Set(pages.map(({ metadata }) => metadata.audience))];
-  const order = ['Users and maintainers', 'Users', 'Maintainers'];
-  audiences.sort((a, b) => (order.includes(a) ? order.indexOf(a) : 3) - (order.includes(b) ? order.indexOf(b) : 3) || a.localeCompare(b));
+  audiences.sort((a, b) => (order.includes(a) ? order.indexOf(a) : order.length) - (order.includes(b) ? order.indexOf(b) : order.length) || a.localeCompare(b));
   for (const audience of audiences) {
     lines.push('', `## ${audience}`, '');
     for (const { metadata } of pages.filter((page) => page.metadata.audience === audience).sort((a, b) => a.metadata.slug.localeCompare(b.metadata.slug))) {

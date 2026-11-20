@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { parseHTML } from 'linkedom';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
-import { home } from '../site.mjs';
+import * as settings from '../site.mjs';
 
 const defaultOrigin = 'https://docs.allors.com';
 const markdown = unified().use(remarkParse);
@@ -78,26 +78,25 @@ async function findFile(filename) {
 }
 
 /**
- * Check published links without making network requests. A link to `home`, the documentation home that
- * another build publishes at the root of the same origin, is counted as unchecked instead of being
- * looked up in this build output when it lies outside the deployment base.
+ * Check published links without making network requests. Two kinds of link on the same origin point to
+ * documentation that another build publishes; each is counted as unchecked instead of being looked up in
+ * this build output. The first is a link to `home`, the documentation home at the root of the origin,
+ * when it lies outside the deployment base. The second is a link beneath one of the `external` path
+ * prefixes, the documentation areas that the home links to.
  */
-export async function checkLinks(outDir, baseURL = '/immersive/', { home: homeURL } = {}) {
+export async function checkLinks(outDir, baseURL = settings.base, { home: homeURL, external = [] } = {}) {
   const directory = path.resolve(outDir);
   const base = new URL(baseURL, defaultOrigin);
   if (!base.pathname.endsWith('/')) base.pathname += '/';
   base.search = '';
   base.hash = '';
   const errors = [];
+  const relativeTo = (filename) => path.relative(directory, filename).split(path.sep).join('/');
   const documents = new Map();
   const targets = new Map();
   let links = 0;
   let unchecked = 0;
   const homePath = homeURL === undefined ? undefined : new URL(homeURL, base).pathname;
-
-  function published(filename) {
-    return path.relative(directory, filename).split(path.sep).join('/');
-  }
 
   async function documentFor(filename) {
     if (!documents.has(filename)) {
@@ -136,7 +135,7 @@ export async function checkLinks(outDir, baseURL = '/immersive/', { home: homeUR
         continue;
       }
       if (!['http:', 'https:'].includes(url.protocol) || url.host !== base.host) continue;
-      if (url.pathname === homePath && !url.pathname.startsWith(base.pathname)) {
+      if ((url.pathname === homePath && !url.pathname.startsWith(base.pathname)) || external.some((prefix) => url.pathname.startsWith(prefix))) {
         unchecked += 1;
         continue;
       }
@@ -162,7 +161,7 @@ export async function checkLinks(outDir, baseURL = '/immersive/', { home: homeUR
       }
       const target = await targetFor(requested);
       if (!target) {
-        errors.push(`${context} target does not exist at ${published(requested) || 'index.html'}. Correct the link or publish the missing file.`);
+        errors.push(`${context} target does not exist at ${relativeTo(requested) || 'index.html'}. Correct the link or publish the missing file.`);
         continue;
       }
       if (!fragment || !/\.(html|md)$/.test(target)) continue;
@@ -183,7 +182,7 @@ export async function checkLinks(outDir, baseURL = '/immersive/', { home: homeUR
         .flatMap((element) => [element.getAttribute('id'), element.getAttribute('name')])
         .filter((anchor) => anchor !== null));
       if (!anchors.has(fragment)) {
-        errors.push(`${context} fragment #${fragment} does not exist in ${published(htmlTarget)}. Use an existing heading or anchor ID.`);
+        errors.push(`${context} fragment #${fragment} does not exist in ${relativeTo(htmlTarget)}. Use an existing heading or anchor ID.`);
       }
     }
   }
@@ -192,10 +191,13 @@ export async function checkLinks(outDir, baseURL = '/immersive/', { home: homeUR
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
-    const base = new URL(process.env.DOCS_BASE || '/immersive/', process.env.DOCS_SITE || defaultOrigin);
-    const result = await checkLinks(fileURLToPath(new URL('../dist/', import.meta.url)), base, { home });
+    // The site says where it is published, and which links another build answers for: a product area
+    // names the documentation home, and the home names the areas.
+    const base = new URL(settings.base, settings.site);
+    const external = (settings.areas ?? []).map((area) => area.path);
+    const result = await checkLinks(fileURLToPath(new URL('../dist/', import.meta.url)), base, { home: settings.home, external });
     for (const error of result.errors) console.error(error);
-    console.log(`Checked ${result.links} local links across ${result.files} published files; ${result.unchecked} links to the documentation home were left to its own build; ${result.errors.length} errors.`);
+    console.log(`Checked ${result.links} local links across ${result.files} published files; ${result.unchecked} links to documentation that another build publishes were left to that build; ${result.errors.length} errors.`);
     if (result.errors.length > 0) process.exitCode = 1;
   } catch (error) {
     console.error(`Link check failed: ${error.message}`);
